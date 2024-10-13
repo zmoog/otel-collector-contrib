@@ -6,6 +6,7 @@ import (
 	elasticsearchexporter "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/elasticsearchexporter"
 	basicauthextension "github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension"
 	azureeventhubreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/azureeventhubreceiver"
+	"github.com/zmoog/otel-collector-contrib/receiver/toggltrackreceiver"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/connector"
 	"go.opentelemetry.io/collector/exporter"
@@ -32,6 +33,7 @@ func components() (otelcol.Factories, error) {
 
 	factories.Receivers, err = receiver.MakeFactoryMap(
 		azureeventhubreceiver.NewFactory(),
+		toggltrackreceiver.NewFactory(),
 	)
 	if err != nil {
 		return otelcol.Factories{}, err

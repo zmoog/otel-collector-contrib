@@ -10,10 +10,12 @@ import (
 )
 
 type togglTrackReceiver struct {
-	cancel   context.CancelFunc
-	logger   *zap.Logger
-	consumer consumer.Logs
-	config   *Config
+	cancel    context.CancelFunc
+	logger    *zap.Logger
+	consumer  consumer.Logs
+	config    *Config
+	scraper   *Scraper
+	marshaler *timeEntryMarshaler
 }
 
 func (t *togglTrackReceiver) Start(ctx context.Context, host component.Host) error {
@@ -34,6 +36,22 @@ func (t *togglTrackReceiver) Start(ctx context.Context, host component.Host) err
 			case <-ticker.C:
 				// Do something
 				t.logger.Info("Doing something")
+
+				entries, err := t.scraper.Scrape(time.Now())
+				if err != nil {
+					t.logger.Error("Error scraping toggltrack", zap.Error(err))
+					continue
+				}
+
+				t.logger.Info("Scraped toggltrack entries", zap.Int("count", len(entries)))
+
+				logs, err := t.marshaler.UnmarshalLogs(entries)
+				if err != nil {
+					t.logger.Error("Error marshaling toggltrack entries", zap.Error(err))
+					continue
+				}
+
+				t.consumer.ConsumeLogs(_ctx, logs)
 			}
 		}
 	}()

@@ -26,11 +26,13 @@ func createDefaultConfig() component.Config {
 func createLogsReceiver(ctx context.Context, settings receiver.Settings, baseCfg component.Config, consumer consumer.Logs) (receiver.Logs, error) {
 	logger := settings.Logger
 	config := baseCfg.(Config)
+	scraper := NewScraper(config.APIToken, logger)
 
 	rcvr := togglTrackReceiver{
 		logger:   logger,
 		consumer: consumer,
 		config:   &config,
+		scraper:  scraper,
 	}
 
 	return &rcvr, nil

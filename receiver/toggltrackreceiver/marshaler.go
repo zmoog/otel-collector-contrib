@@ -11,7 +11,8 @@ import (
 )
 
 const (
-	scopeName = "github.com/zmoog/otel-collector-contrib/receiver/toggltrackreceiver"
+	scopeName   = "github.com/zmoog/otel-collector-contrib/receiver/toggltrackreceiver"
+	scopeVerion = "v0.1.0"
 )
 
 type timeEntryMarshaler struct {
@@ -25,7 +26,7 @@ func (m *timeEntryMarshaler) UnmarshalLogs(timeEntries []toggl.TimeEntry) (plog.
 
 	scopeLogs := resourceLogs.ScopeLogs().AppendEmpty()
 	scopeLogs.Scope().SetName(scopeName)
-	// scopeLogs.Scope().SetVersion(r.Version)
+	scopeLogs.Scope().SetVersion(scopeVerion)
 	logRecords := scopeLogs.LogRecords()
 
 	for _, e := range timeEntries {
@@ -43,16 +44,16 @@ func (m *timeEntryMarshaler) UnmarshalLogs(timeEntries []toggl.TimeEntry) (plog.
 
 		a := lr.Attributes()
 		a.PutStr("id", strconv.Itoa(e.ID))
-		a.PutStr("wid", strconv.Itoa(e.Wid))
+		a.PutStr("workspace_id", strconv.Itoa(e.Wid))
 		a.PutStr("description", e.Description)
 		a.PutStr("start", e.Start.Format(time.RFC3339))
 		a.PutStr("end", e.Stop.Format(time.RFC3339)) // `end` is ECS compliant
 		a.PutInt("duration", e.Duration)
 		if e.Pid != nil {
-			a.PutStr("pid", strconv.Itoa(*e.Pid))
+			a.PutStr("project_id", strconv.Itoa(*e.Pid))
 		}
 		if e.Tid != nil {
-			a.PutStr("wid", strconv.Itoa(*e.Tid))
+			a.PutStr("task_id", strconv.Itoa(*e.Tid))
 		}
 
 		tags := a.PutEmptySlice("tags")

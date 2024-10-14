@@ -22,8 +22,8 @@ type Scraper struct {
 }
 
 func (s *Scraper) Scrape(referenceTime time.Time) ([]toggl.TimeEntry, error) {
-	endDate := referenceTime                  // time.Parse("2006-01-02", "2024-10-05")
-	startDate := endDate.Add(-24 * time.Hour) // time.Parse("2006-01-02", "2024-10-04")
+	endDate := referenceTime                           // time.Parse("2006-01-02", "2024-10-05")
+	startDate := endDate.Add(-1 * 24 * 30 * time.Hour) // time.Parse("2006-01-02", "2024-10-04")
 
 	entries, err := s.session.GetTimeEntries(startDate, endDate)
 	if err != nil {

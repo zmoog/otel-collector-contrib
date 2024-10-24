@@ -2,9 +2,9 @@
 receivers:
   # https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/azureeventhubreceiver
   #   connection: ${EVENTHUB_CONNECTION_STRING}
-  # toggltrack:
-  #   interval: 30m
-  #   api_token: ${TOGGL_API_TOKEN}
+  toggltrack:
+    interval: 1m
+    api_token: ${TOGGL_API_TOKEN}
   zcsazzurro:
     interval: 5m
     client_id: ${ZCS_CLIENT_ID}
@@ -35,10 +35,10 @@ extensions:
 service:
   extensions: [basicauth]
   pipelines:
-    # logs:
-    #   receivers: [toggltrack]
-    #   processors: [batch]
-    #   exporters: [elasticsearch, debug]
+    logs:
+      receivers: [toggltrack]
+      processors: [batch]
+      exporters: [elasticsearch, debug]
     metrics:
       receivers: [zcsazzurro]
       exporters: [elasticsearch, debug]

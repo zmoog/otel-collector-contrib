@@ -1,20 +1,17 @@
 # config.yaml
 receivers:
   # https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/azureeventhubreceiver
-  # azureeventhub:
-  #   # the only required setting is the connection string
   #   connection: ${EVENTHUB_CONNECTION_STRING}
-  toggltrack:
-    interval: 30m
-    api_token: ${TOGGL_API_TOKEN}
-
+  # toggltrack:
+  #   interval: 30m
+  #   api_token: ${TOGGL_API_TOKEN}
+  zcsazzurro:
+    interval: 5m
+    client_id: ${ZCS_CLIENT_ID}
+    auth_key: ${ZCS_AUTH_KEY}
+    thing_key: ${ZCS_THING_KEY}
 processors:
   batch:
-  transform:
-    log_statements:
-      - context: log
-        statements:
-          - set(body["_id"], attributes["id"])
 
 exporters:
   # NOTE: Prior to v0.86.0 use `logging` instead of `debug`.
@@ -25,6 +22,7 @@ exporters:
   elasticsearch:
     endpoints: ${ELASTICSEARCH_ENDPOINTS}
     logs_index: logs-toggl.track-default
+    metrics_index: metrics-zcs.azzurro-default
     auth:
       authenticator: basicauth
 
@@ -37,9 +35,12 @@ extensions:
 service:
   extensions: [basicauth]
   pipelines:
-    logs:
-      receivers: [toggltrack]
-      processors: [batch]
+    # logs:
+    #   receivers: [toggltrack]
+    #   processors: [batch]
+    #   exporters: [elasticsearch, debug]
+    metrics:
+      receivers: [zcsazzurro]
       exporters: [elasticsearch, debug]
   telemetry:
     logs:

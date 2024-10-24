@@ -8,6 +8,7 @@ import (
 	transformprocessor "github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor"
 	azureeventhubreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/azureeventhubreceiver"
 	"github.com/zmoog/otel-collector-contrib/receiver/toggltrackreceiver"
+	zcsazzurroreceiver "github.com/zmoog/otel-collector-contrib/receiver/zcsazzurroreceiver"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/connector"
 	"go.opentelemetry.io/collector/exporter"
@@ -33,8 +34,8 @@ func components() (otelcol.Factories, error) {
 	factories.ExtensionModules[basicauthextension.NewFactory().Type()] = "github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.111.0"
 
 	factories.Receivers, err = receiver.MakeFactoryMap(
-		azureeventhubreceiver.NewFactory(),
 		toggltrackreceiver.NewFactory(),
+		zcsazzurroreceiver.NewFactory(),
 	)
 	if err != nil {
 		return otelcol.Factories{}, err

@@ -1,9 +1,11 @@
-module github.com/zmoog/otel-collector-contrib/receiver/toggltrackreceiver
+module github.com/zmoog/otel-collector-contrib/receiver/zcsazzurroreceiver
 
-go 1.22.6
+go 1.22.0
+
+toolchain go1.22.8
 
 require (
-	github.com/jason0x43/go-toggl v0.0.0-20240528025633-4e5873a36db2
+	github.com/zmoog/zcs v0.0.0-20241022205023-c46cb36bc71d
 	go.opentelemetry.io/collector/component v0.111.0
 	go.opentelemetry.io/collector/consumer v0.111.0
 	go.opentelemetry.io/collector/pdata v1.18.0

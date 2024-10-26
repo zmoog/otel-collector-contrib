@@ -7,7 +7,6 @@ import (
 	toggl "github.com/jason0x43/go-toggl"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/plog"
-	"go.uber.org/zap"
 )
 
 const (
@@ -15,9 +14,7 @@ const (
 	scopeVerion = "v0.1.0"
 )
 
-type timeEntryMarshaler struct {
-	logger *zap.Logger
-}
+type timeEntryMarshaler struct{}
 
 func (m *timeEntryMarshaler) UnmarshalLogs(timeEntries []toggl.TimeEntry) (plog.Logs, error) {
 	l := plog.NewLogs()

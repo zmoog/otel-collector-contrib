@@ -13,41 +13,45 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
-    name: Lint and Test
+  # Detect the modules in the receiver directory
+  # From https://github.com/golangci/golangci-lint-action?tab=readme-ov-file#how-to-use
+  detect-modules:
+    runs-on: ubuntu-latest
+    outputs:
+      modules: ${{ steps.set-modules.outputs.modules }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - id: set-modules
+        run: echo "modules=$(go list -m -json | jq -s '.' | jq -c '[.[].Dir]')" >> $GITHUB_OUTPUT    
+  
+  golangci-lint:
+    needs: detect-modules
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        receiver: [toggltrackreceiver, zcsazzurroreceiver]
-
+        modules: ${{ fromJSON(needs.detect-modules.outputs.modules) }}
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - name: golangci-lint ${{ matrix.modules }}
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest
+          working-directory: ${{ matrix.modules }}
 
-    - name: Set up Go
-      uses: actions/setup-go@v5
-      with:
-        go-version: '1.22'
-        cache: true
-
-    - name: Install golangci-lint
-      uses: golangci/golangci-lint-action@v6
-      with:
-        working-directory: ./receiver/${{ matrix.receiver }}
-        version: latest
-
-    # - name: Lint
+    # - name: Test
     #   run: |
     #     cd receiver/${{ matrix.receiver }}
-    #     golangci-lint run ./...
+    #     go test -v -race -coverprofile=coverage.txt -covermode=atomic ./...
 
-    - name: Test
-      run: |
-        cd receiver/${{ matrix.receiver }}
-        go test -v -race -coverprofile=coverage.txt -covermode=atomic ./...
-
-    - name: Upload coverage
-      uses: codecov/codecov-action@v4
-      with:
-        file: ./receiver/${{ matrix.receiver }}/coverage.txt
-        flags: ${{ matrix.receiver }}
-        name: ${{ matrix.receiver }}
+    # - name: Upload coverage
+    #   uses: codecov/codecov-action@v4
+    #   with:
+    #     file: ./receiver/${{ matrix.receiver }}/coverage.txt
+    #     flags: ${{ matrix.receiver }}
+    #     name: ${{ matrix.receiver }}

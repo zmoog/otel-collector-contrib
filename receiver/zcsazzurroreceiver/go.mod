@@ -1,6 +1,6 @@
 module github.com/zmoog/otel-collector-contrib/receiver/zcsazzurroreceiver
 
-go 1.22.6
+go 1.22
 
 require (
 	github.com/zmoog/zcs v0.0.0-20241022205023-c46cb36bc71d

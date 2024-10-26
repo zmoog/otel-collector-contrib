@@ -17,8 +17,8 @@ processors:
       go.opentelemetry.io/collector/processor/batchprocessor v0.111.0
 
 receivers:
-  - gomod:
-      github.com/open-telemetry/opentelemetry-collector-contrib/receiver/azureeventhubreceiver v0.111.0
+  # - gomod:
+  #     github.com/open-telemetry/opentelemetry-collector-contrib/receiver/azureeventhubreceiver v0.111.0
 
 extensions:
   - gomod:

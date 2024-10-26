@@ -16,7 +16,7 @@ ocb:
 	curl --proto '=https' --tlsv1.2 -fL -o ocb https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/cmd%2Fbuilder%2Fv${OTELCOL_VERSION}/ocb_${OTELCOL_VERSION}_darwin_arm64 && \
 	chmod +x ocb
 
-build-collector: ocb
+generate-collector: ocb
 	cd collector && \
 	./ocb --config builder-config.yaml
 

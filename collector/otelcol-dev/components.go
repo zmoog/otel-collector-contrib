@@ -14,7 +14,6 @@ import (
 	elasticsearchexporter "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/elasticsearchexporter"
 	basicauthextension "github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension"
 	batchprocessor "go.opentelemetry.io/collector/processor/batchprocessor"
-	azureeventhubreceiver "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/azureeventhubreceiver"
 	toggltrackreceiver "github.com/zmoog/otel-collector-contrib/receiver/toggltrackreceiver"
 	zcsazzurroreceiver "github.com/zmoog/otel-collector-contrib/receiver/zcsazzurroreceiver"
 )
@@ -33,7 +32,6 @@ func components() (otelcol.Factories, error) {
 	factories.ExtensionModules[basicauthextension.NewFactory().Type()] = "github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.111.0"
 
 	factories.Receivers, err = receiver.MakeFactoryMap(
-		azureeventhubreceiver.NewFactory(),
 		toggltrackreceiver.NewFactory(),
 		zcsazzurroreceiver.NewFactory(),
 	)
@@ -41,7 +39,6 @@ func components() (otelcol.Factories, error) {
 		return otelcol.Factories{}, err
 	}
 	factories.ReceiverModules = make(map[component.Type]string, len(factories.Receivers))
-	factories.ReceiverModules[azureeventhubreceiver.NewFactory().Type()] = "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/azureeventhubreceiver v0.111.0"
 
 	factories.Exporters, err = exporter.MakeFactoryMap(
 		debugexporter.NewFactory(),

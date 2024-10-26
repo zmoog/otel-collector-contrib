@@ -51,7 +51,9 @@ func (t *togglTrackReceiver) Start(ctx context.Context, host component.Host) err
 					continue
 				}
 
-				t.consumer.ConsumeLogs(_ctx, logs)
+				if err := t.consumer.ConsumeLogs(_ctx, logs); err != nil {
+					t.logger.Error("Error consuming toggltrack logs", zap.Error(err))
+				}
 			}
 		}
 	}()

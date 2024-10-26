@@ -50,7 +50,9 @@ func (z *zcsazzurroReceiver) Start(ctx context.Context, host component.Host) err
 				}
 
 				z.logger.Info("Metrics", zap.Any("metrics", metrics))
-				z.consumer.ConsumeMetrics(_ctx, metrics)
+				if err := z.consumer.ConsumeMetrics(_ctx, metrics); err != nil {
+					z.logger.Error("Error consuming zcsazzurro metrics", zap.Error(err))
+				}
 			}
 		}
 	}()

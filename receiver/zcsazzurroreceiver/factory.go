@@ -14,7 +14,7 @@ var (
 )
 
 const (
-	defaultInterval = 1 * time.Minute
+	defaultInterval = 5 * time.Minute
 )
 
 func createDefaultConfig() component.Config {

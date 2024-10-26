@@ -34,9 +34,16 @@ func (m *azzurroRealtimeDataMarshaler) UnmarshalMetrics(response azzurro.Realtim
 
 	for _, v := range response.RealtimeData.Params.Value {
 		for thingKey, value := range v {
-			timestamp := pcommon.Timestamp(value.LastUpdate.UnixNano())
+			// ----------------------------------------------------------------
+			// Resource attributes
+			// ----------------------------------------------------------------
+			resource.Attributes().PutStr("thing_key", thingKey)
 
 			// ----------------------------------------------------------------
+			// Timestamp
+			// ----------------------------------------------------------------
+			timestamp := pcommon.Timestamp(value.LastUpdate.UnixNano())
+
 			// Power metrics
 			// ----------------------------------------------------------------
 
@@ -252,8 +259,6 @@ func (m *azzurroRealtimeDataMarshaler) UnmarshalMetrics(response azzurro.Realtim
 			energyImportingTotalDataPoint := energyImportingTotalSum.DataPoints().AppendEmpty()
 			energyImportingTotalDataPoint.SetDoubleValue(value.EnergyImportingTotal)
 			energyImportingTotalDataPoint.SetTimestamp(timestamp)
-
-			resource.Attributes().PutStr("thing_key", thingKey)
 		}
 	}
 

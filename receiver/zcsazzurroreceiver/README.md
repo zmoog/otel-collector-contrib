@@ -10,15 +10,23 @@ This receiver reads ZCS Azzurro inverters data from the ZCS cloud platform and t
 
 ## Configuration
 
-The following settings are required:
+### client_id (Required)
 
-- `client_id:` API client ID (from ZCS support).
-- `auth_key:` API authenication key (from ZCS support).
-- `thing_key:` The serial number of your ZCS inverter.
+A string with the ZCS API client ID (from ZCS support).
 
-The following settings can be optionally configured:
+### auth_key (Required)
 
-- `interval` (default = 5m): Specifies the time interval between polls to fetch data from the ZCS API.
+A string with the ZCS API authenication key (from ZCS support).
+
+### thing_key (Required)
+
+A string with the ZCS inverter serial number.
+
+### interval (Optional)
+
+A string with the time interval between polls to fetch data from the ZCS API.
+
+Default: `5m`
 
 ### Example configurations
 
@@ -31,3 +39,34 @@ Using connection string for authentication:
     thing_key: ${ZCS_THING_KEY}
     interval: 30m
 ```
+
+## Format
+
+The metrics are exported with the following schema:
+
+
+| Metric Name                | Type  | Unit   | Description                |
+| -------------------------- | ----- | ------ | -------------------------- |
+| power_autoconsuming        | gauge | W      | Power autoconsuming        |
+| power_charging             | gauge | W      | Power charging             |
+| power_consuming            | gauge | W      | Power consuming            |
+| power_discharging          | gauge | W      | Power discharging          |
+| power_exporting            | gauge | W      | Power exporting            |
+| power_generating           | gauge | W      | Power generating           |
+| power_total                |       |        | Total power                |
+| battery_soc                | gauge | %      | Battery SOC                |
+| battery_cycletime_total    | sum   | cycles | Total battery cycletime    |
+| energy_autoconsuming       | gauge |        | Energy autoconsuming       |
+| energy_autoconsuming_total | sum   | Wh     | Energy autoconsuming total |
+| energy_charging            | gauge |        | Energy charging            |
+| energy_charging_total      | sum   | Wh     | Energy charging total      |
+| energy_consuming           | gauge |        | Energy consuming           |
+| energy_consuming_total     | sum   | Wh     | Energy consuming total     |
+| energy_discharging         | gauge |        | Energy discharging         |
+| energy_discharging_total   | sum   | Wh     | Energy discharging total   |
+| energy_exporting           | gauge |        | Energy exporting           |
+| energy_exporting_total     | sum   | Wh     | Energy exporting total     |
+| energy_generating          | gauge |        | Energy generating          |
+| energy_generating_total    | sum   | Wh     | Energy generating total    |
+| energy_importing           | gauge |        | Energy importing           |
+| energy_importing_total     | sum   | Wh     | Energy importing total     |

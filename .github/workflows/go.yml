@@ -32,12 +32,13 @@ jobs:
     - name: Install golangci-lint
       uses: golangci/golangci-lint-action@v6
       with:
+        working-directory: ./receiver/${{ matrix.receiver }}
         version: latest
 
-    - name: Lint
-      run: |
-        cd receiver/${{ matrix.receiver }}
-        golangci-lint run ./...
+    # - name: Lint
+    #   run: |
+    #     cd receiver/${{ matrix.receiver }}
+    #     golangci-lint run ./...
 
     - name: Test
       run: |

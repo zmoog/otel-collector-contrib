@@ -108,13 +108,13 @@ func (m *azzurroRealtimeDataMarshaler) UnmarshalMetrics(response azzurro.Realtim
 			batterySoCDataPoint.SetIntValue(int64(value.BatterySoC))
 			batterySoCDataPoint.SetTimestamp(timestamp)
 
-			batteryCycletime := scopeMetrics.Metrics().AppendEmpty()
-			batteryCycletime.SetName("battery_cycletime")
-			batteryCycletime.SetDescription("Battery cycletime")
-			batteryCycletime.SetUnit("s")
-			batteryCycletimeDataPoint := batteryCycletime.SetEmptyGauge().DataPoints().AppendEmpty()
-			batteryCycletimeDataPoint.SetIntValue(int64(value.BatteryCycletime))
-			batteryCycletimeDataPoint.SetTimestamp(timestamp)
+			batteryCycletimeTotal := scopeMetrics.Metrics().AppendEmpty()
+			batteryCycletimeTotal.SetName("battery_cycletime_total")
+			batteryCycletimeTotal.SetDescription("Total battery cycletime")
+			batteryCycletimeTotal.SetUnit("cycles")
+			batteryCycletimeTotalDataPoint := batteryCycletimeTotal.SetEmptySum().DataPoints().AppendEmpty()
+			batteryCycletimeTotalDataPoint.SetIntValue(int64(value.BatteryCycletime))
+			batteryCycletimeTotalDataPoint.SetTimestamp(timestamp)
 
 			// ----------------------------------------------------------------
 			// Energy metrics

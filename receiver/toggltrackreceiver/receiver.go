@@ -25,6 +25,7 @@ func (t *togglTrackReceiver) Start(ctx context.Context, host component.Host) err
 	t.cancel = cancel
 
 	interval, _ := time.ParseDuration(t.config.Interval)
+	lookback, _ := time.ParseDuration(t.config.Lookback)
 	go func() {
 		ticker := time.NewTicker(interval)
 		defer ticker.Stop()
@@ -37,7 +38,7 @@ func (t *togglTrackReceiver) Start(ctx context.Context, host component.Host) err
 				// Do something
 				t.logger.Info("Doing something")
 
-				entries, err := t.scraper.Scrape(time.Now())
+				entries, err := t.scraper.Scrape(time.Now(), lookback)
 				if err != nil {
 					t.logger.Error("Error scraping toggltrack", zap.Error(err))
 					continue

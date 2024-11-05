@@ -15,11 +15,13 @@ var (
 
 const (
 	defaultInterval = 1 * time.Minute
+	defaultLookback = 24 * 30 * time.Hour // 30 days
 )
 
 func createDefaultConfig() component.Config {
 	return Config{
 		Interval: defaultInterval.String(),
+		Lookback: defaultLookback.String(),
 	}
 }
 

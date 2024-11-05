@@ -21,9 +21,9 @@ type Scraper struct {
 	logger  *zap.Logger
 }
 
-func (s *Scraper) Scrape(referenceTime time.Time) ([]toggl.TimeEntry, error) {
+func (s *Scraper) Scrape(referenceTime time.Time, lookback time.Duration) ([]toggl.TimeEntry, error) {
 	endDate := referenceTime
-	startDate := endDate.Add(-1 * 24 * 30 * time.Hour)
+	startDate := endDate.Add(-lookback)
 
 	entries, err := s.session.GetTimeEntries(startDate, endDate)
 	if err != nil {

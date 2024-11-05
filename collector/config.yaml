@@ -3,7 +3,11 @@ receivers:
   # https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/azureeventhubreceiver
   #   connection: ${EVENTHUB_CONNECTION_STRING}
   toggltrack:
+    # For interval and lookback, valid time units are:
+    # "ns", "us" (or "µs"), "ms", "s", "m", "h".
+    # See https://pkg.go.dev/time#Duration.Parse
     interval: 1m
+    lookback: 2160h # 24h * 90 = 90 days
     api_token: ${TOGGL_API_TOKEN}
   zcsazzurro:
     interval: 5m

@@ -1,9 +1,10 @@
-go 1.22.6
+go 1.23.3
 
-toolchain go1.22.8
+toolchain go1.23.3
 
 use (
 	./collector/otelcol-dev
 	./receiver/toggltrackreceiver
+	./receiver/wavinsentioreceiver
 	./receiver/zcsazzurroreceiver
 )

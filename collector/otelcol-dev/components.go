@@ -15,6 +15,7 @@ import (
 	basicauthextension "github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension"
 	batchprocessor "go.opentelemetry.io/collector/processor/batchprocessor"
 	toggltrackreceiver "github.com/zmoog/otel-collector-contrib/receiver/toggltrackreceiver"
+	wavinsentioreceiver "github.com/zmoog/otel-collector-contrib/receiver/wavinsentioreceiver"
 	zcsazzurroreceiver "github.com/zmoog/otel-collector-contrib/receiver/zcsazzurroreceiver"
 )
 
@@ -33,6 +34,7 @@ func components() (otelcol.Factories, error) {
 
 	factories.Receivers, err = receiver.MakeFactoryMap(
 		toggltrackreceiver.NewFactory(),
+		wavinsentioreceiver.NewFactory(),
 		zcsazzurroreceiver.NewFactory(),
 	)
 	if err != nil {

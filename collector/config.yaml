@@ -9,6 +9,10 @@ receivers:
     interval: ${env:TOGGL_INTERVAL:-1m}
     lookback: ${env:TOGGL_LOOKBACK:-720h} # 24h * 30 = 30 days
     api_token: ${env:TOGGL_API_TOKEN}
+  wavinsentio:
+    interval: ${env:WS_INTERVAL:-1m}
+    username: ${env:WS_USERNAME}
+    password: ${env:WS_PASSWORD}
   zcsazzurro:
     interval: 5m
     client_id: ${ZCS_CLIENT_ID}

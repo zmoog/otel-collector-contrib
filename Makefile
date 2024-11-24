@@ -20,7 +20,7 @@ generate-collector: ocb
 	cd collector && \
 	./ocb --config builder-config.yaml
 
-run-collector:
+run-local:
 	go run ./collector/otelcol-dev --config collector/config.yaml
 
 # =============================================================================

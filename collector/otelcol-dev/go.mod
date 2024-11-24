@@ -2,9 +2,9 @@
 
 module go.opentelemetry.io/collector/cmd/builder
 
-go 1.22.0
+go 1.23.3
 
-toolchain go1.22.6
+toolchain go1.23.3
 
 require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/elasticsearchexporter v0.111.0

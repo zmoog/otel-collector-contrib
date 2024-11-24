@@ -2,6 +2,7 @@ package wavinsentioreceiver
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	"go.opentelemetry.io/collector/component"
@@ -22,10 +23,13 @@ type wavinsentioReceiver struct {
 func (w *wavinsentioReceiver) Start(ctx context.Context, host component.Host) error {
 	w.logger.Info("Starting wavinsentio receiver")
 
-	interval, _ := time.ParseDuration(w.config.Interval)
-
 	_ctx, cancel := context.WithCancel(ctx)
 	w.cancel = cancel
+
+	interval, err := time.ParseDuration(w.config.Interval)
+	if err != nil {
+		return fmt.Errorf("invalid interval: %w", err)
+	}
 
 	go func() {
 		ticker := time.NewTicker(interval)
@@ -36,8 +40,7 @@ func (w *wavinsentioReceiver) Start(ctx context.Context, host component.Host) er
 			case <-_ctx.Done():
 				return
 			case <-ticker.C:
-				// Do something
-				w.logger.Info("Doing something")
+				w.logger.Info("Scraping data from wavinsentio")
 
 				results, err := w.scraper.Scrape()
 				if err != nil {

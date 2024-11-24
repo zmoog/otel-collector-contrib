@@ -1,6 +1,6 @@
 module github.com/zmoog/otel-collector-contrib/receiver/toggltrackreceiver
 
-go 1.22.6
+go 1.23.3
 
 require (
 	github.com/jason0x43/go-toggl v0.0.0-20240528025633-4e5873a36db2

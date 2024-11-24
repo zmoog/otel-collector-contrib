@@ -21,6 +21,7 @@ type Scraper struct {
 	client *ws.Client
 }
 
+// Scrape scrapes the data from the wavinsentio API.
 func (s *Scraper) Scrape() ([]ScrapeResult, error) {
 	results := []ScrapeResult{}
 
@@ -44,6 +45,8 @@ func (s *Scraper) Scrape() ([]ScrapeResult, error) {
 	return results, nil
 }
 
+// ScrapeResult is the result of a scrape.
+// It contains a location and all rooms in that location.
 type ScrapeResult struct {
 	Location ws.Location
 	Rooms    []ws.Room

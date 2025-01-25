@@ -5,7 +5,7 @@ go 1.22.0
 toolchain go1.22.8
 
 require (
-	github.com/zmoog/zcs v0.0.0-20241022205023-c46cb36bc71d
+	github.com/zmoog/zcs v0.2.0
 	go.opentelemetry.io/collector/component v0.111.0
 	go.opentelemetry.io/collector/consumer v0.111.0
 	go.opentelemetry.io/collector/pdata v1.18.0

@@ -48,7 +48,7 @@ service:
       exporters: [elasticsearch]
     metrics:
       receivers: [wavinsentio, zcsazzurro]
-      exporters: [elasticsearch, debug]
+      exporters: [elasticsearch]
   telemetry:
     logs:
       level: debug

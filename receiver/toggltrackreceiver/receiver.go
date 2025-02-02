@@ -46,6 +46,11 @@ func (t *togglTrackReceiver) Start(ctx context.Context, host component.Host) err
 
 				t.logger.Info("Scraped toggltrack entries", zap.Int("count", len(entries)))
 
+				if len(entries) == 0 {
+					t.logger.Info("No new entries to process")
+					continue
+				}
+
 				logs, err := t.marshaler.UnmarshalLogs(entries)
 				if err != nil {
 					t.logger.Error("Error marshaling toggltrack entries", zap.Error(err))

@@ -17,7 +17,7 @@ require (
 	go.opentelemetry.io/collector/confmap/provider/httpsprovider v0.111.0
 	go.opentelemetry.io/collector/confmap/provider/yamlprovider v0.111.0
 	go.opentelemetry.io/collector/connector v0.111.0
-	go.opentelemetry.io/collector/exporter v0.111.0
+	go.opentelemetry.io/collector/exporter v0.119.0
 	go.opentelemetry.io/collector/exporter/debugexporter v0.111.0
 	go.opentelemetry.io/collector/extension v0.111.0
 	go.opentelemetry.io/collector/otelcol v0.111.0

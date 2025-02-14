@@ -2,7 +2,7 @@
 
 module go.opentelemetry.io/collector/cmd/builder
 
-go 1.23.3
+go 1.24.0
 
 toolchain go1.24.0
 
@@ -27,7 +27,7 @@ require (
 	go.opentelemetry.io/collector/processor v0.119.0
 	go.opentelemetry.io/collector/processor/batchprocessor v0.119.0
 	go.opentelemetry.io/collector/receiver v0.119.0
-	golang.org/x/sys v0.30.0
+	golang.org/x/sys v0.29.0
 )
 
 require (

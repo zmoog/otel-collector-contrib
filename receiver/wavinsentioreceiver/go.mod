@@ -1,6 +1,6 @@
 module github.com/zmoog/otel-collector-contrib/receiver/wavinsentioreceiver
 
-go 1.23.3
+go 1.24.0
 
 require (
 	github.com/zmoog/ws v0.1.0

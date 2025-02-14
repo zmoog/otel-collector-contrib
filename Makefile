@@ -6,7 +6,7 @@ SERVICE_NAME    := otel-collector
 SERVICE_VERSION := 0.3.0-$(shell git rev-parse --short HEAD)
 SERVICE_IMAGE   := $(BASE_IMAGE_NAME)/$(SERVICE_NAME):$(SERVICE_VERSION)
 
-OTELCOL_VERSION := 0.111.0
+OTELCOL_VERSION := 0.119.0
 
 # ==============================================================================
 # Define targets

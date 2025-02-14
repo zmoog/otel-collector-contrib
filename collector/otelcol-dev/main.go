@@ -20,7 +20,7 @@ func main() {
 	info := component.BuildInfo{
 		Command:     "otelcol-dev",
 		Description: "OTel Collector distribution",
-		Version:     "0.3.0",
+		Version:     "0.4",
 	}
 
 	set := otelcol.CollectorSettings{

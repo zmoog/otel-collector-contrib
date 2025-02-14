@@ -3,7 +3,7 @@
 BASE_IMAGE_NAME := zmoog
 # BASE_IMAGE_NAME := ghcr.io/zmoog/benderr
 SERVICE_NAME    := otel-collector
-SERVICE_VERSION := 0.2.0
+SERVICE_VERSION := 0.3.0-$(shell git rev-parse --short HEAD)
 SERVICE_IMAGE   := $(BASE_IMAGE_NAME)/$(SERVICE_NAME):$(SERVICE_VERSION)
 
 OTELCOL_VERSION := 0.111.0
@@ -20,7 +20,7 @@ generate-collector: ocb
 	cd collector && \
 	./ocb --config builder-config.yaml
 
-run-collector:
+run-local:
 	go run ./collector/otelcol-dev --config collector/config.yaml
 
 # =============================================================================

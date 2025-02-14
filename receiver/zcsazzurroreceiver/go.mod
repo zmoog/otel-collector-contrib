@@ -2,13 +2,11 @@ module github.com/zmoog/otel-collector-contrib/receiver/zcsazzurroreceiver
 
 go 1.23.3
 
-toolchain go1.23.3
-
 require (
 	github.com/zmoog/zcs v0.0.0-20241022205023-c46cb36bc71d
 	go.opentelemetry.io/collector/component v0.111.0
-	go.opentelemetry.io/collector/consumer v0.111.0
-	go.opentelemetry.io/collector/pdata v1.18.0
+	go.opentelemetry.io/collector/consumer v0.114.0
+	go.opentelemetry.io/collector/pdata v1.20.0
 	go.opentelemetry.io/collector/receiver v0.111.0
 	go.uber.org/zap v1.27.0
 )

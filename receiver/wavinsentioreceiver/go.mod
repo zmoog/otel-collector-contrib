@@ -5,7 +5,7 @@ go 1.23.3
 require (
 	github.com/zmoog/ws v0.1.0
 	go.opentelemetry.io/collector/component v0.111.0
-	go.opentelemetry.io/collector/consumer v0.111.0
+	go.opentelemetry.io/collector/consumer v0.114.0
 	go.opentelemetry.io/collector/pdata v1.20.0
 	go.opentelemetry.io/collector/receiver v0.111.0
 	go.uber.org/zap v1.27.0

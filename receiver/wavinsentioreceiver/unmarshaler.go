@@ -68,53 +68,62 @@ func (u *roomUnmarshaler) UnmarshalMetrics(rooms []ws.Room) (pmetric.Metrics, er
 	// ----------------------------------------------------------------
 	timestamp := pcommon.Timestamp(time.Now().UnixNano())
 
-	md := pmetric.NewMetrics()
+	m := pmetric.NewMetrics()
 
 	for _, room := range rooms {
 
-		resourceMetrics := md.ResourceMetrics().AppendEmpty()
+		resourceMetrics := m.ResourceMetrics().AppendEmpty()
+
+		// ----------------------------------------------------------------
+		// Resource attributes
+		// ----------------------------------------------------------------
+
 		resource := resourceMetrics.Resource()
+		resource.Attributes().PutStr("wavinsentio.room.code", room.Code)
+		resource.Attributes().PutStr("wavinsentio.room.name", room.Name)
+		resource.Attributes().PutStr("wavinsentio.room.status", room.Status)
+
+		// ----------------------------------------------------------------
+		// Scope metrics
+		// ----------------------------------------------------------------
 
 		scopeMetrics := resourceMetrics.ScopeMetrics().AppendEmpty()
 		scopeMetrics.Scope().SetName(scopeName)
 		scopeMetrics.Scope().SetVersion(scopeVerion)
 
 		// ----------------------------------------------------------------
-		// Resource attributes
-		// ----------------------------------------------------------------
-
-		resource.Attributes().PutStr("wavinsentio.room.code", room.Code)
-		resource.Attributes().PutStr("wavinsentio.room.name", room.Name)
-		resource.Attributes().PutStr("wavinsentio.room.status", room.Status)
-
-		// ----------------------------------------------------------------
 		// Metrics
 		// ----------------------------------------------------------------
 
-		temperatureDesired := scopeMetrics.Metrics().AppendEmpty()
+		metrics := scopeMetrics.Metrics()
+
+		temperatureDesired := metrics.AppendEmpty()
 		temperatureDesired.SetName("wavinsentio.room.temperature.desired")
 		temperatureDesired.SetDescription("Temperature desired")
 		temperatureDesired.SetUnit("°C")
 		temperatureDesiredDataPoint := temperatureDesired.SetEmptyGauge().DataPoints().AppendEmpty()
 		temperatureDesiredDataPoint.SetDoubleValue(room.TempDesired)
 		temperatureDesiredDataPoint.SetTimestamp(timestamp)
+		temperatureDesiredDataPoint.Attributes().PutStr("wavinsentio.room.code", room.Code)
 
-		temperatureCurrent := scopeMetrics.Metrics().AppendEmpty()
+		temperatureCurrent := metrics.AppendEmpty()
 		temperatureCurrent.SetName("wavinsentio.room.temperature.current")
 		temperatureCurrent.SetDescription("Temperature current")
 		temperatureCurrent.SetUnit("°C")
 		temperatureCurrentDataPoint := temperatureCurrent.SetEmptyGauge().DataPoints().AppendEmpty()
 		temperatureCurrentDataPoint.SetDoubleValue(room.TempCurrent)
 		temperatureCurrentDataPoint.SetTimestamp(timestamp)
+		temperatureCurrentDataPoint.Attributes().PutStr("wavinsentio.room.code", room.Code)
 
-		humidityCurrent := scopeMetrics.Metrics().AppendEmpty()
+		humidityCurrent := metrics.AppendEmpty()
 		humidityCurrent.SetName("wavinsentio.room.humidity.current")
 		humidityCurrent.SetDescription("Humidity current")
 		humidityCurrent.SetUnit("%")
 		humidityCurrentDataPoint := humidityCurrent.SetEmptyGauge().DataPoints().AppendEmpty()
 		humidityCurrentDataPoint.SetDoubleValue(room.HumidityCurrent)
 		humidityCurrentDataPoint.SetTimestamp(timestamp)
+		humidityCurrentDataPoint.Attributes().PutStr("wavinsentio.room.code", room.Code)
 	}
 
-	return md, nil
+	return m, nil
 }

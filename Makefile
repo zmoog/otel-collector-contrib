@@ -1,35 +1,52 @@
 # ==============================================================================
 # Define dependencies
 BASE_IMAGE_NAME := zmoog
-# BASE_IMAGE_NAME := ghcr.io/zmoog/benderr
 SERVICE_NAME    := otel-collector
 SERVICE_VERSION := 0.4-$(shell git rev-parse --short HEAD)
 SERVICE_IMAGE   := $(BASE_IMAGE_NAME)/$(SERVICE_NAME):$(SERVICE_VERSION)
 
 OTELCOL_VERSION := 0.119.0
 
+KO_DOCKER_REPO  := ghcr.io/zmoog/otel-collector-contrib
+
 # ==============================================================================
 # Define targets
 
-ocb:
-	cd collector && \
-	curl --proto '=https' --tlsv1.2 -fL -o ocb https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/cmd%2Fbuilder%2Fv${OTELCOL_VERSION}/ocb_${OTELCOL_VERSION}_darwin_arm64 && \
-	chmod +x ocb
+BUILD_DIR ?= _build
+export GOBIN = $(shell realpath $(BUILD_DIR))/_bin
 
-generate-collector: ocb
-	cd collector && \
-	./ocb --config builder-config.yaml
+$(BUILD_DIR):
+	@mkdir -p $(BUILD_DIR)
 
-run-local:
-	go run ./collector/otelcol-dev --config collector/config.yaml
+$(GOBIN): tools/go.mod
+	cd tools && go install go.opentelemetry.io/collector/cmd/mdatagen
+	cd tools && go install golang.org/x/tools/cmd/goimports
+	cd tools && go install honnef.co/go/tools/cmd/staticcheck
+	cd tools && go install github.com/google/ko@latest
+	cd tools && go install go.opentelemetry.io/collector/cmd/builder@v$(OTELCOL_VERSION)
 
-# =============================================================================
-# Building containers
 
-service:
-	docker build \
-		-f Dockerfile \
-		-t ${SERVICE_IMAGE} \
-		--build-arg BUILD_REF=$(SERVICE_VERSION) \
-		--build-arg BUILD_DATE=$(shell date -u +'%Y-%m-%dT%H:%M:%SZ') \
-		.	
+.PHONY: generate
+generate: $(GOBIN)
+	cd collector && $(GOBIN)/builder --config builder-config.yaml
+
+.PHONY: staticcheck
+staticcheck: $(GOBIN)
+	# run staticcheck for all go
+	# directories that have a go.mod
+	# file present
+	find . -name go.mod -execdir $(GOBIN)/staticcheck ./... \;
+
+.PHONY: fmt
+fmt: $(GOBIN)
+	$(GOBIN)/goimports -local github.com/zmoog/ -w .
+
+.PHONY: run
+run:
+	cd collector/otelcol && ./otelcol --config ../../config.yaml
+
+.PHONY: service
+service: $(GOBIN)
+	cd collector/otelcol && KO_DOCKER_REPO=$(KO_DOCKER_REPO) $(GOBIN)/ko build . \
+		--platform=linux/amd64,linux/arm64 \
+		--bare

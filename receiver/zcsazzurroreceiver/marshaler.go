@@ -1,10 +1,11 @@
 package zcsazzurroreceiver
 
 import (
-	"github.com/zmoog/zcs/azzurro"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/pmetric"
 	"go.uber.org/zap"
+
+	"github.com/zmoog/zcs/azzurro"
 )
 
 const (

@@ -1,8 +1,9 @@
 # builder-config.yaml
 dist:
-  name: otelcol-dev
+  module: github.com/zmoog/otel-collector-contrib/collector/otelcol
+  name: otelcol
   description: OTel Collector distribution
-  output_path: ./otelcol-dev
+  output_path: ./otelcol
   version: 0.4
 
 exporters:

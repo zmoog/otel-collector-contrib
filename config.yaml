@@ -1,0 +1,56 @@
+# config.yaml
+receivers:
+  # https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/azureeventhubreceiver
+  #   connection: ${EVENTHUB_CONNECTION_STRING}
+  toggltrack:
+    # For interval and lookback, valid time units are:
+    # "ns", "us" (or "µs"), "ms", "s", "m", "h".
+    # See https://pkg.go.dev/time#Duration.Parse
+    interval: ${env:TOGGL_INTERVAL:-5m}
+    lookback: ${env:TOGGL_LOOKBACK:-720h} # 24h * 30 = 30 days
+    api_token: ${env:TOGGL_API_TOKEN}
+  wavinsentio:
+    interval: ${env:WS_INTERVAL:-1m}
+    # interval: ${env:WS_INTERVAL:-30s}
+    username: ${env:WS_USERNAME}
+    password: ${env:WS_PASSWORD}
+  zcsazzurro:
+    interval: ${env:ZCS_INTERVAL:-5m}
+    client_id: ${env:ZCS_CLIENT_ID}
+    auth_key: ${env:ZCS_AUTH_KEY}
+    thing_key: ${env:ZCS_THING_KEY}
+processors:
+  batch:
+
+exporters:
+  # NOTE: Prior to v0.86.0 use `logging` instead of `debug`.
+  debug:
+    verbosity: detailed
+
+  # https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/elasticsearchexporter
+  elasticsearch:
+    endpoints: ${env:ELASTICSEARCH_ENDPOINTS}
+    logs_index: logs-toggl.track-default
+    auth:
+      authenticator: basicauth
+
+extensions:
+  basicauth:
+    client_auth:
+      username: ${env:ELASTICSEARCH_USERNAME}
+      password: ${env:ELASTICSEARCH_PASSWORD}
+
+service:
+  extensions: [basicauth]
+  pipelines:
+    logs:
+      receivers: [toggltrack]
+      exporters: [elasticsearch]
+    metrics:
+      receivers: [wavinsentio, zcsazzurro]
+      # receivers: [wavinsentio]
+      # exporters: [elasticsearch, debug]
+      exporters: [elasticsearch]
+  telemetry:
+    logs:
+      level: debug

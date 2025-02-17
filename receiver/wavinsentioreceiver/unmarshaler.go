@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/zmoog/ws/ws"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/pmetric"
 	"go.uber.org/zap"
+
+	"github.com/zmoog/ws/ws"
 )
 
 const (

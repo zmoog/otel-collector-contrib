@@ -1,9 +1,10 @@
 package wavinsentioreceiver
 
 import (
+	"go.uber.org/zap"
+
 	"github.com/zmoog/ws/ws"
 	"github.com/zmoog/ws/ws/identity"
-	"go.uber.org/zap"
 )
 
 func newScraper(username, password string, logger *zap.Logger) *Scraper {

@@ -1,8 +1,9 @@
 package zcsazzurroreceiver
 
 import (
-	"github.com/zmoog/zcs/azzurro"
 	"go.uber.org/zap"
+
+	"github.com/zmoog/zcs/azzurro"
 )
 
 func NewScraper(clientID, authKey, thingKey string, logger *zap.Logger) *Scraper {

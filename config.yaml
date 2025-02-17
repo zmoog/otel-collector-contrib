@@ -31,9 +31,6 @@ exporters:
   elasticsearch:
     endpoints: ${env:ELASTICSEARCH_ENDPOINTS}
     logs_index: logs-toggl.track-default
-    metrics_dynamic_index:
-      enabled: false
-    metrics_index: metrics-wavinsentio-debug
     auth:
       authenticator: basicauth
 

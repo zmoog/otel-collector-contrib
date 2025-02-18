@@ -39,6 +39,8 @@ go.opentelemetry.io/auto/sdk v1.1.0 h1:cH53jehLUN6UFLY71z+NDOiNJqDdPRaXzTel0sJyS
 go.opentelemetry.io/auto/sdk v1.1.0/go.mod h1:3wSPjt5PWp2RhlCcmmOial7AvC4DQqZb7a7wCow3W8A=
 go.opentelemetry.io/collector/component v0.119.0 h1:ZVp9myF1Bc4BLa1V4C15Jy/VpqKPPhvbxpe9pP1mPMc=
 go.opentelemetry.io/collector/component v0.119.0/go.mod h1:wtuWxFl+Ky9E/5+t2FwHoLyADDiBFFDdx8fN3fEs0n8=
+go.opentelemetry.io/collector/component v0.120.0 h1:YHEQ6NuBI6FQHKW24OwrNg2IJ0EUIg4RIuwV5YQ6PSI=
+go.opentelemetry.io/collector/component v0.120.0/go.mod h1:Ya5O+5NWG9XdhJPnOVhKtBrNXHN3hweQbB98HH4KPNU=
 go.opentelemetry.io/collector/config/configtelemetry v0.119.0 h1:gAgMUEVXZKgpASxOrhS55DyA/aYatq0U6gitZI8MLXw=
 go.opentelemetry.io/collector/config/configtelemetry v0.119.0/go.mod h1:SlBEwQg0qly75rXZ6W1Ig8jN25KBVBkFIIAUI1GiAAE=
 go.opentelemetry.io/collector/consumer v1.25.0 h1:qCJa7Hh7lY3vYWgwcEgTGSjjITLCn+BSsya8LxjpoPY=
@@ -49,6 +51,8 @@ go.opentelemetry.io/collector/consumer/xconsumer v0.119.0 h1:s9DrRdb1kYXy2psr34z
 go.opentelemetry.io/collector/consumer/xconsumer v0.119.0/go.mod h1:3fvk+0hd4WMv76+oUUNah0rQ35dZzH3zyMMCg9MtsuY=
 go.opentelemetry.io/collector/pdata v1.25.0 h1:AmgBklQfbfy0lT8qsoJtRuYMZ7ZV3VZvkvhjSDentrg=
 go.opentelemetry.io/collector/pdata v1.25.0/go.mod h1:Zs7D4RXOGS7E2faGc/jfWdbmhoiHBxA7QbpuJOioxq8=
+go.opentelemetry.io/collector/pdata v1.26.0 h1:o7nP0RTQOG0LXk55ZZjLrxwjX8x3wHF7Z7xPeOaskEA=
+go.opentelemetry.io/collector/pdata v1.26.0/go.mod h1:18e8/xDZsqyj00h/5HM5GLdJgBzzG9Ei8g9SpNoiMtI=
 go.opentelemetry.io/collector/pdata/pprofile v0.119.0 h1:sVtv/MhQ3NDLkgHOWDF9BdTtThNyXdOUiz5+poRkYLQ=
 go.opentelemetry.io/collector/pdata/pprofile v0.119.0/go.mod h1:ur4388PjUpmwG5HoSMzrLCPkR0gNVLT4lekcJMRPt8A=
 go.opentelemetry.io/collector/pipeline v0.119.0 h1:NebdPIOBIzU7CdOE36hNrCrUML+XOTR9Zsoy43E7MVk=
@@ -108,5 +112,7 @@ google.golang.org/grpc v1.70.0 h1:pWFv03aZoHzlRKHWicjsZytKAiYCtNS0dHbXnIdq7jQ=
 google.golang.org/grpc v1.70.0/go.mod h1:ofIJqVKDXx/JiXrwr2IG4/zwdH9txy3IlF40RmcJSQw=
 google.golang.org/protobuf v1.36.4 h1:6A3ZDJHn/eNqc1i+IdefRzy/9PokBTPvcqMySR7NNIM=
 google.golang.org/protobuf v1.36.4/go.mod h1:9fA7Ob0pmnwhb644+1+CVWFRbNajQ6iRojtC/QF5bRE=
+google.golang.org/protobuf v1.36.5 h1:tPhr+woSbjfYvY6/GPufUoYizxw1cF/yFoxJ2fmpwlM=
+google.golang.org/protobuf v1.36.5/go.mod h1:9fA7Ob0pmnwhb644+1+CVWFRbNajQ6iRojtC/QF5bRE=
 gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
 gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=

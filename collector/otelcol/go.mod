@@ -11,7 +11,7 @@ require (
 	github.com/zmoog/otel-collector-contrib/receiver/wavinsentioreceiver v0.119.0
 	github.com/zmoog/otel-collector-contrib/receiver/zcsazzurroreceiver v0.119.0
 	go.opentelemetry.io/collector/component v0.119.0
-	go.opentelemetry.io/collector/confmap v1.25.0
+	go.opentelemetry.io/collector/confmap v1.26.0
 	go.opentelemetry.io/collector/confmap/provider/envprovider v1.25.0
 	go.opentelemetry.io/collector/confmap/provider/fileprovider v1.25.0
 	go.opentelemetry.io/collector/confmap/provider/httpprovider v1.25.0

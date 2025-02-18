@@ -4,9 +4,9 @@ go 1.24.0
 
 require (
 	github.com/zmoog/zcs v0.2.0
-	go.opentelemetry.io/collector/component v0.119.0
+	go.opentelemetry.io/collector/component v0.120.0
 	go.opentelemetry.io/collector/consumer v1.25.0
-	go.opentelemetry.io/collector/pdata v1.25.0
+	go.opentelemetry.io/collector/pdata v1.26.0
 	go.opentelemetry.io/collector/receiver v0.119.0
 	go.uber.org/zap v1.27.0
 )
@@ -29,5 +29,5 @@ require (
 	golang.org/x/text v0.21.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20241202173237-19429a94021a // indirect
 	google.golang.org/grpc v1.70.0 // indirect
-	google.golang.org/protobuf v1.36.4 // indirect
+	google.golang.org/protobuf v1.36.5 // indirect
 )

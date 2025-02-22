@@ -1,0 +1,7 @@
+type: wavinsentio
+scope_name: github.com/zmoog/otel-collector-contrib/wavinsentio
+
+status:
+  class: receiver
+  stability:
+    development: [metrics]

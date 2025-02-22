@@ -4,31 +4,31 @@ dist:
   name: otelcol
   description: OTel Collector distribution
   output_path: ./otelcol
-  version: 0.4
+  version: 0.5
 
 exporters:
   - gomod:
-      go.opentelemetry.io/collector/exporter/debugexporter v0.119.0
+      go.opentelemetry.io/collector/exporter/debugexporter v0.120.0
   - gomod:
-      github.com/open-telemetry/opentelemetry-collector-contrib/exporter/elasticsearchexporter v0.119.0
+      github.com/open-telemetry/opentelemetry-collector-contrib/exporter/elasticsearchexporter v0.120.0
 
 processors:
   - gomod:
-      go.opentelemetry.io/collector/processor/batchprocessor v0.119.0
+      go.opentelemetry.io/collector/processor/batchprocessor v0.120.0
 
 receivers:
   - gomod:
-      github.com/zmoog/otel-collector-contrib/receiver/toggltrackreceiver v0.119.0
+      github.com/zmoog/otel-collector-contrib/receiver/toggltrackreceiver v0.120.0
   - gomod:
-      github.com/zmoog/otel-collector-contrib/receiver/zcsazzurroreceiver v0.119.0
+      github.com/zmoog/otel-collector-contrib/receiver/zcsazzurroreceiver v0.120.0
   - gomod:
-      github.com/zmoog/otel-collector-contrib/receiver/wavinsentioreceiver v0.119.0
+      github.com/zmoog/otel-collector-contrib/receiver/wavinsentioreceiver v0.120.0
 
 extensions:
   - gomod:
-      github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.119.0
+      github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.120.0
 
 replaces:
-  - github.com/zmoog/otel-collector-contrib/receiver/toggltrackreceiver v0.119.0 => ../../receiver/toggltrackreceiver
-  - github.com/zmoog/otel-collector-contrib/receiver/wavinsentioreceiver v0.119.0 => ../../receiver/wavinsentioreceiver
-  - github.com/zmoog/otel-collector-contrib/receiver/zcsazzurroreceiver v0.119.0 => ../../receiver/zcsazzurroreceiver
+  - github.com/zmoog/otel-collector-contrib/receiver/toggltrackreceiver v0.120.0 => ../../receiver/toggltrackreceiver
+  - github.com/zmoog/otel-collector-contrib/receiver/wavinsentioreceiver v0.120.0 => ../../receiver/wavinsentioreceiver
+  - github.com/zmoog/otel-collector-contrib/receiver/zcsazzurroreceiver v0.120.0 => ../../receiver/zcsazzurroreceiver

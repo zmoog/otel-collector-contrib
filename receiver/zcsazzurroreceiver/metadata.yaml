@@ -1,0 +1,7 @@
+type: zcsazzurro
+scope_name: github.com/zmoog/otel-collector-contrib/zcsazzurro
+
+status:
+  class: receiver
+  stability:
+    development: [metrics]

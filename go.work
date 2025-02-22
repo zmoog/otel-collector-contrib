@@ -5,4 +5,5 @@ use (
 	./receiver/toggltrackreceiver
 	./receiver/wavinsentioreceiver
 	./receiver/zcsazzurroreceiver
+	./tools
 )

@@ -110,6 +110,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/exporter/elasticsearch
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/elasticsearchexporter v0.120.0/go.mod h1:b0YfQEaAoiQcizXdqhbB+gE2+Fz85CWSPYZb1bIdyUY=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.120.0 h1:6GfD6gBZx1SwX1mwkHKLNMCf4XxMGEBbiBHkEXj6UF8=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.120.0/go.mod h1:1Kbw8Rq4ZDUSAtQm3qYtT8td2Dz/gerOZAe7bGwA4n4=
+github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.120.1 h1:3zcweRH48qvf1zSVsVJZ+feHeivMdoQsvnrcTqxa2P8=
+github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.120.1/go.mod h1:1Kbw8Rq4ZDUSAtQm3qYtT8td2Dz/gerOZAe7bGwA4n4=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/common v0.120.0 h1:R0pNs9Riy3MUcRfFNsSHJD5kCsTsa22Qlv/qyOCg1hk=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/common v0.120.0/go.mod h1:4VW/mVPlWSsCtXbXqkXNNAIQLt9qGo5B35c3A+QkHRk=
 github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.120.0 h1:lRHDUyoBJysAHNrhG0/ZQVCv5/uS6pviIDgsFwdPUv0=

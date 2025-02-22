@@ -6,7 +6,7 @@ go 1.24.0
 
 require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/elasticsearchexporter v0.120.0
-	github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.120.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.120.1
 	github.com/zmoog/otel-collector-contrib/receiver/toggltrackreceiver v0.120.0
 	github.com/zmoog/otel-collector-contrib/receiver/wavinsentioreceiver v0.120.0
 	github.com/zmoog/otel-collector-contrib/receiver/zcsazzurroreceiver v0.120.0
